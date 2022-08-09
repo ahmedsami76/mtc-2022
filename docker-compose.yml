@@ -1,0 +1,23 @@
+version: '3.7'
+
+services:
+
+  sql-db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sql
+    hostname: sql
+    volumes:
+      - ./data:/data
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=P@ssw0rd
+
+  spark:
+    image: asami76/spark-hadoop:latest
+    container_name: sparkc
+    hostname: sparkc
+    volumes:
+      - ./data:/data
+    #command: jupyter-notebook --no-browser --allow-root --ip 0.0.0.0 /data/notebooks/
+    tty: true
+    stdin_open: true
