@@ -11,6 +11,16 @@ services:
     environment:
       - ACCEPT_EULA=Y
       - MSSQL_SA_PASSWORD=P@ssw0rd
+  
+  pg-db:
+   image: postgres
+   restart: always
+   container_name: pg
+   hostname: pg 
+   volumes:
+    - ./data:/data    
+   environment:
+    POSTGRES_PASSWORD: P@ssw0rd
 
   spark:
     image: asami76/spark-hadoop:latest

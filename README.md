@@ -52,3 +52,8 @@ Then copy the provided link to open Jupyter Notebook from the Docker host's brow
 The AdventureWorks DB backup file is placed in the `/data/sql-db/` dir    
 To restore into the sql-db service in Docker Compose:  
 `docker-compose exec  sql-db  /opt/mssql-tools/bin/sqlcmd -s localhost -U sa -P P@ssw0rd -Q 'restore database nwtraders from disk = "/data/sql-db/AdventureWorksLT2019.bak" with move "AdventureWorksLT2012_Data" to "/var/opt/mssql/data/AdventureWorksLT2012.mdf", move "AdventureWorksLT2012_Log" to "/var/opt/mssql/data/AdventureWorksLT2012_log.ldf", REPLACE'`
+
+## to restore dvdrental DB in postgres container
+The dvdrental backup file is placed in the '/data/pg-db/` dir  
+To restore into the pg-db container from docker-compose:  
+`docker-compose exec pg-db psql -U postgres -c "CREATE DATABASE dvdrental;" && docker-compose exec pg-db pg_restore -U postgres -d dvdrental /data/pg-db/dvdrental.tar`
