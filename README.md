@@ -21,9 +21,7 @@ Run the following to pull and start the container:
 The AdventureWorks DB backup file is placed in the `/data/sql-db/` dir  
 Note: You may need to wait for a couple of minutes before restoring the db to ensure the PG daemons are already up    
 To restore into the sql-db service in Docker Compose:  
-`docker-compose exec  sql-db  /opt/mssql-tools/bin/sqlcmd -s localhost -U sa -P P@ssw0rd -Q 'restore database nwtraders from disk = "/data/sql-db/AdventureWorksLT2019.bak" with move "AdventureWorksLT2012_Data" to "/var/opt/mssql/data/AdventureWorksLT2012.mdf", move "AdventureWorksLT2012_Log" to "/var/opt/mssql/data/AdventureWorksLT2012_log.ldf", REPLACE'`  
-
-`docker-compose exec  sql-db  /opt/mssql-tools/bin/sqlcmd -s localhost -U sa -P P@ssw0rd -Q 'restore database AdventureWorks from disk = "/data/sql-db/AdventureWorks2019.bak" with move "AdventureWorks2017" to "/var/opt/mssql/data/AdventureWorks2019.mdf", move "AdventureWorks2017_Log" to "/var/opt/mssql/data/AdventureWorks2019_log.ldf", REPLACE'`
+`docker-compose exec  sql-db  /opt/mssql-tools/bin/sqlcmd -s localhost -U sa -P P@ssw0rd -Q 'restore database adworks from disk = "/data/sql-db/AdventureWorksLT2019.bak" with move "AdventureWorksLT2012_Data" to "/var/opt/mssql/data/AdventureWorksLT2012.mdf", move "AdventureWorksLT2012_Log" to "/var/opt/mssql/data/AdventureWorksLT2012_log.ldf", REPLACE'`  
 
 
 ## 4- Restore dvdrental DB in postgres container
