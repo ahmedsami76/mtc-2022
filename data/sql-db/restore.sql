@@ -1,2 +1,2 @@
-restore database nwtraders from disk = '/data/sql-db/AdventureWorksLT2019.bak' with move 'AdventureWorksLT2012_Data' to '/var/opt/mssql/data/AdventureWorksLT2012.mdf', move 'AdventureWorksLT2012_Log' to '/var/opt/mssql/data/AdventureWorksLT2012_log.ldf', REPLACE
+restore database nwtraders from disk = '/data/sql-db/AdventureWorks2019.bak' with move 'AdventureWorks2012_Data' to '/var/opt/mssql/data/AdventureWorks2012.mdf', move 'AdventureWorks2012_Log' to '/var/opt/mssql/data/AdventureWorks2012_log.ldf', REPLACE
  

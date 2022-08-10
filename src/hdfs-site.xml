@@ -29,4 +29,8 @@
     <name>dfs.datanode.data.dir</name>
     <value>file:/usr/local/hadoop/yarn_data/hdfs/datanode</value>
   </property>
+  <property>
+    <name>dfs.permissions</name>
+    <value>false</value>
+  </property>
 </configuration>
