@@ -34,26 +34,27 @@ docker run -it --rm --name sparkc -h sparkc -v `pwd`/data:/data asami76/spark-ha
 - another option is to use another container that would automatically register the container's hostname as an alias in the docker host's `/etc/hosts` file 
  in order to be able to access the container by name from the docker host
 
-## use hoster service
+## 1- Use hoster service
 1. pull the docker-hoster image from my repo on docker hub  
 `docker run -d -v /var/run/docker.sock:/tmp/docker.sock -v /etc/hosts:/tmp/hosts asami76/docker-hoster`
 2. build and run the spark-hadoop container from the build steps above
 3. from the docker host open your browser and type the following in the url `http://sparkc:9870`
 
-## use jupyter notebook to connect to spark
-to be able to use Jupyter Notebook to connect to the Spark standalone cluster in the container rather than using the pyspark shell run the following:  
-`jupyter-notebook --no-browser --allow-root --ip 0.0.0.0 /data/notebooks/`  
-Then copy the provided link to open Jupyter Notebook from the Docker host's browser
 
-## to spin up the docker compose service
+## 2- Spin up the docker compose service
 `docker-compose -f docker-compose.yml up -d`  
 
-## to restore AdventureWorks DB in sql container  
+## 3- Restore AdventureWorks DB in sql container  
 The AdventureWorks DB backup file is placed in the `/data/sql-db/` dir    
 To restore into the sql-db service in Docker Compose:  
 `docker-compose exec  sql-db  /opt/mssql-tools/bin/sqlcmd -s localhost -U sa -P P@ssw0rd -Q 'restore database nwtraders from disk = "/data/sql-db/AdventureWorksLT2019.bak" with move "AdventureWorksLT2012_Data" to "/var/opt/mssql/data/AdventureWorksLT2012.mdf", move "AdventureWorksLT2012_Log" to "/var/opt/mssql/data/AdventureWorksLT2012_log.ldf", REPLACE'`
 
-## to restore dvdrental DB in postgres container
+## 4- Restore dvdrental DB in postgres container
 The dvdrental backup file is placed in the '/data/pg-db/` dir  
 To restore into the pg-db container from docker-compose:  
 `docker-compose exec pg-db psql -U postgres -c "CREATE DATABASE dvdrental;" && docker-compose exec pg-db pg_restore -U postgres -d dvdrental /data/pg-db/dvdrental.tar`
+
+## 5- Open Jupyter Lab to connect to spark
+to be able to use Jupyter Notebook to connect to the Spark standalone cluster in the container rather than using the pyspark shell run the following:  
+`docker-compose exec spark jupyter-lab --no-browser --allow-root --ip 0.0.0.0 /data/notebooks/`  
+Then copy the provided link to open Jupyter Lab from the Docker host's browser
