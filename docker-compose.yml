@@ -13,7 +13,7 @@ services:
       - MSSQL_SA_PASSWORD=P@ssw0rd
   
   pg-db:
-   image: postgres
+   image: postgres:latest
    restart: always
    container_name: pg
    hostname: pg 
@@ -28,6 +28,5 @@ services:
     hostname: sparkc
     volumes:
       - ./data:/data
-    #command: jupyter-notebook --no-browser --allow-root --ip 0.0.0.0 /data/notebooks/
     tty: true
     stdin_open: true
