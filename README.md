@@ -35,7 +35,10 @@ To restore into the pg-db container from docker-compose:
 
 ## 5- Install required modules and drivers
 to install mssql driver
-`docker-compose exec spark sh /data/pyodbc.sh`
+`docker-compose exec spark sh /data/pyodbc.sh`  
+`docker-compose exec spark cp /data/sql-db/sqljdbc42.jar /usr/local/spark/jars`  
+`docker-compose exec spark cp /data/pg-db/postgresql-42.4.1.jar /usr/local/spark/jars`  
+
 to install the required python packages
 `docker-compose exec spark pip install -r /data/requirements.txt`  
 
