@@ -6,6 +6,9 @@ services:
     image: mcr.microsoft.com/mssql/server:2019-latest
     container_name: sql
     hostname: sql
+    networks:
+      sb:
+        ipv4_address: 172.18.0.4
     volumes:
       - ./data:/data
     environment:
@@ -16,7 +19,10 @@ services:
    image: postgres:latest
    restart: always
    container_name: pg
-   hostname: pg 
+   hostname: pg
+   networks:
+      sb:
+        ipv4_address: 172.18.0.3 
    volumes:
     - ./data:/data    
    environment:
@@ -26,7 +32,16 @@ services:
     image: asami76/spark-hadoop:latest
     container_name: sparkc
     hostname: sparkc
+    networks:
+      sb:
+        ipv4_address: 172.18.0.2
     volumes:
       - ./data:/data
     tty: true
     stdin_open: true
+networks:
+  sb:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 172.18.0.0/24
